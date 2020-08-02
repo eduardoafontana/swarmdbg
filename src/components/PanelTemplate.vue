@@ -3,21 +3,36 @@
   <pane min-size="10" size="20">
     <div class='drop-zone' @drop='onDrop($event, 0)' @dragover.prevent @dragenter.prevent>
       <div class='drag-el' v-for="item in listOne" :key='item.title' draggable @dragstart='startDrag($event, item)'>
-        {{ item.title }}
+        <div class="panel-head">
+          Panel Head: {{ item.title }} title
+        </div>
+        <div class="panel-content" @dragstart.prevent draggable="disable">
+            <component v-bind:is="item.panel"></component>
+        </div>
       </div>
     </div>
   </pane>
   <pane min-size="10">
     <div class='drop-zone' @drop='onDrop($event, 1)' @dragover.prevent @dragenter.prevent>
       <div class='drag-el' v-for="item in listTwo" :key='item.title' draggable @dragstart='startDrag($event, item)'>
-        {{ item.title }}
+        <div class="panel-head">
+          Panel Head: {{ item.title }} title
+        </div>
+        <div class="panel-content" @dragstart.prevent draggable="disable">
+          <component v-bind:is="item.panel"></component>
+        </div>
       </div>
     </div>
   </pane>
   <pane min-size="10">
     <div class='drop-zone' @drop='onDrop($event, 2)' @dragover.prevent @dragenter.prevent>
       <div class='drag-el' v-for="item in listThree" :key='item.title' draggable @dragstart='startDrag($event, item)'>
-        {{ item.title }}
+        <div class="panel-head">
+          Panel Head: {{ item.title }} title
+        </div>
+        <div class="panel-content" @dragstart.prevent draggable="disable">
+          <component v-bind:is="item.panel"></component>
+        </div>
       </div>
     </div>
   </pane>
@@ -28,6 +43,34 @@
 import { Splitpanes, Pane } from 'splitpanes'
 import 'splitpanes/dist/splitpanes.css'
 
+import PanelFilter from './PanelFilter.vue'
+import PanelView from './PanelView.vue'
+import PanelCode from './PanelCode.vue'
+
+var dataPanels = [
+  {
+    id: 0,
+    title: 'Panel Filter',
+    panel: 'PanelFilter',
+    zoneId: 0,
+    content: null
+  },
+  {
+    id: 1,
+    title: 'Panel View',
+    panel: 'PanelView',
+    zoneId: 1,
+    content: null
+  },
+  {
+    id: 2,
+    title: 'Panel Code',
+    panel: 'PanelCode',
+    zoneId: 2,
+    content: null
+  }
+];
+
 export default {
   name: 'PanelTemplate',
   props: {
@@ -35,26 +78,14 @@ export default {
   },
   components: { 
     Splitpanes, 
-    Pane 
+    Pane,
+    PanelFilter,
+    PanelView,
+    PanelCode
   },
   data() {
     return {
-      items: [
-        {
-          id: 0,
-          title: 'Item A',
-          zoneId: 0
-        },
-        {
-          id: 1,
-          title: 'Item B',
-          zoneId: 1
-        },
-        {
-          id: 2,
-          title: 'Item C',
-          zoneId: 2
-        }]
+      items: dataPanels
     }
   },
   computed: {
@@ -94,20 +125,29 @@ export default {
 </script>
 
 <style scoped>
+  .splitpanes__pane { 
+    background-color:bisque;
+    padding: 5px;
+  }
+
   .drop-zone {
-    background-color: rgb(36, 96, 165);
-    padding: 10px;
+    background-color:whitesmoke;
+    padding: 5px;
     height: 100%;
   }
 
   .drag-el {
     background-color: #fff;
-    margin-bottom: 10px;
     padding: 5px;
+    height: 100%;
   }
 
-  .splitpanes__pane { 
-    background-color:bisque;
-    padding: 5px;
+  .panel-head {
+    cursor: move;
+  }
+
+  .panel-content {
+    background-color: azure;
+    height: 100%;
   }
 </style>
