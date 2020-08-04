@@ -1,14 +1,20 @@
 <template>
-  <div><b>Panel Filter</b></div>
+  <div>
+    <b>Panel Filter</b>
+    <DropdownFilter></DropdownFilter>
+  </div>
 </template>
 
 <script>
+import DropdownFilter from './DropdownFilter.vue'
+
 export default {
   name: 'PanelFilter',
   props: {
     msg: String
   },
-  components: {  
+  components: {
+    DropdownFilter
   }
 }
 </script>

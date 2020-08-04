@@ -7,7 +7,9 @@
           Panel Head: {{ item.title }} title
         </div>
         <div class="panel-content" @dragstart.prevent draggable="disable">
-            <component v-bind:is="item.panel"></component>
+            <keep-alive>
+              <component v-bind:is="item.panel"></component>
+            </keep-alive>
         </div>
       </div>
     </div>
@@ -19,7 +21,9 @@
           Panel Head: {{ item.title }} title
         </div>
         <div class="panel-content" @dragstart.prevent draggable="disable">
-          <component v-bind:is="item.panel"></component>
+          <keep-alive>
+            <component v-bind:is="item.panel"></component>
+          </keep-alive>
         </div>
       </div>
     </div>
@@ -31,7 +35,9 @@
           Panel Head: {{ item.title }} title
         </div>
         <div class="panel-content" @dragstart.prevent draggable="disable">
-          <component v-bind:is="item.panel"></component>
+          <keep-alive>
+            <component v-bind:is="item.panel"></component>
+          </keep-alive>
         </div>
       </div>
     </div>
