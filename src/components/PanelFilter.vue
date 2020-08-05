@@ -1,7 +1,7 @@
 <template>
   <div>
     <b>Panel Filter</b>
-    <DropdownFilter></DropdownFilter>
+    <DropdownFilter title="Tasks / Projects"></DropdownFilter>
   </div>
 </template>
 

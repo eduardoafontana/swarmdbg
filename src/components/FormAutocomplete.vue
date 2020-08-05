@@ -3,15 +3,21 @@
     <div>
       <div class="items-selected">
         <div class="item-selected" v-for="(v, k) in value" :key='v.uid'>
-          <slot name="selected" :item="v">{{v.uid}} - {{v.title}}</slot> <button @click="removeItem(k)">remove</button>
+          <slot name="selected" :item="v">{{v.title}}</slot>
+          <div class="button-x"><b-icon class="x-selected" @click="removeItem(k)" icon="x-circle-fill"></b-icon></div>
         </div>
       </div>
-      <input v-model="textSearch" type="text" :placeholder="placeholder"/>
+      <b-input-group class="input-search" size="sm">
+        <b-input-group-prepend is-text>
+          <b-icon icon="search"></b-icon>
+        </b-input-group-prepend>
+        <b-form-input type="search" v-model="textSearch" :placeholder="placeholder"></b-form-input>
+      </b-input-group>
       <ul>
         <li v-for="item in filteredOptions" :key='item.title' @click="addItem(item)">
           <slot :item="item">{{item.title}}</slot>
         </li>
-        <li v-if="filteredOptions.length===0">Item not found</li>
+        <li v-if="filteredOptions.length===0">No items to show</li>
       </ul>
     </div>
   </div>
@@ -78,36 +84,51 @@ export default {
 
 <style scoped>
 .form-autocomplete {
-  padding: 10px;
+  padding: 7px 7px 0px 7px;
   background: #eaeaea;
 }
 
 ul {
-  width: 200px;
+  margin-top: 7px;
   padding-left: 0;
+  max-height: 150px;
+  overflow: auto;
 }
 ul > li {
   cursor: pointer;
   list-style: none;
-  padding: 5px;
+  padding: 3px 5px 3px 5px;
   margin-bottom: 5px;
-  border: 1px solid white;
-  background: #dedede;
+  background:darkgrey;
+  color: white;
 }
 ul > li:hover {
   background: #313131;
   color: white;
 }
 
-.items-selected {
-  margin-top: 20px;
+.items-selected{
+  margin-bottom: 5px;
 }
 .item-selected {
-  border-radius: 5px;
   display: inline-block;
-  padding: 5px;
-  background: #7b8fdc;
+  background:darkgrey;
+  border-radius: 3px;
+  padding: 3px 7px 3px 5px;
   color: white;
-  margin: 0 5px 10px 0;
+  margin: 3px 3px 3px 0;
+  font-size: 12px;
+}
+.x-selected:hover {
+  color: #313131;
+  cursor: pointer;
+}
+.button-x {
+  float: right;
+  margin-left: 6px;
+}
+
+.input-search {
+  display: flex;
 }
 </style>
