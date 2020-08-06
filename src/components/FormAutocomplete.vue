@@ -3,7 +3,7 @@
     <div>
       <div class="items-selected">
         <div class="item-selected" v-for="(v, k) in value" :key='v.uid'>
-          <slot name="selected" :item="v">{{v.title}}</slot>
+          <slot name="selected" :item="v"></slot>
           <div class="button-x"><b-icon class="x-selected" @click="removeItem(k)" icon="x-circle-fill"></b-icon></div>
         </div>
       </div>
@@ -15,9 +15,10 @@
       </b-input-group>
       <ul>
         <li v-for="item in filteredOptions" :key='item.title' @click="addItem(item)">
-          <slot :item="item">{{item.title}}</slot>
+          <slot :item="item"></slot>
         </li>
         <li v-if="filteredOptions.length===0">No items to show</li>
+        <li v-if="loading">Loading <b-icon icon="three-dots" animation="cylon"></b-icon></li>
       </ul>
     </div>
   </div>
@@ -29,8 +30,9 @@ export default {
   props: {
     placeholder: {
       type: String,
-      default: '',
+      default: ''
     },
+    loading: Boolean,
     options: {
       type: Array,
       default() {
@@ -43,6 +45,7 @@ export default {
         return {
           uid: undefined,
           title: undefined,
+          subtitle: undefined,
         };
       },
     },
@@ -54,7 +57,10 @@ export default {
   },
   computed: {
     filteredOptions() {
-      return this.options.filter(val => val.title.toLowerCase().includes(this.textSearch.toLowerCase()) && !this.inSelectedItems(val.uid));
+      return this.options.filter(val => 
+        ( val.title.toLowerCase().includes(this.textSearch.toLowerCase()) 
+          || val.subtitle.toLowerCase().includes(this.textSearch.toLowerCase()) )
+        && !this.inSelectedItems(val.uid));
     },
     selectedItems() {
       return this.value.map(v => v.uid);

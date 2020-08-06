@@ -2,9 +2,9 @@
   <div class="d-flex">
     <div class="d-flex-item">
       <span class="title">{{ title }}</span>
-      <FormAutocomplete v-model="multiCountryB" :options="countries" placeholder="Search term">
-        <template slot-scope="row">{{row.item.title}}</template>
-        <template slot="selected" slot-scope="row">{{row.item.title}}</template>
+      <FormAutocomplete v-model="selectedItems" :options="items" placeholder="Search term" :loading="loading">
+        <template slot-scope="row">{{row.item.title}} <span class="subtitle">{{ row.item.subtitle }}</span></template>
+        <template slot="selected" slot-scope="row">{{row.item.title}} <span class="subtitle">{{ row.item.subtitle }}</span></template>
       </FormAutocomplete>
     </div>
   </div>
@@ -19,22 +19,20 @@ export default {
     FormAutocomplete
   },
   props: {
-    title: String
+    title: String,
+    preLoad: Array,
+    items: Array,
+    loading: Boolean
   },
   data() {
     return {
-      countries: [
-        { uid: 'AU', title: 'Australia' },
-        { uid: 'ID', title: 'Indonesia' },
-        { uid: 'KR', title: 'South Korea' },
-        { uid: 'NZ', title: 'New Zealand' },
-      ],
-      multiCountryB : [],
-      // multiCountryB: [
-      //   { uid: 'ID', title: 'Indonesia' },
-      //   { uid: 'AU', title: 'Australia' },
-      // ],
+      selectedItems: this.preLoad
     };
+  },
+  watch: {
+    selectedItems: function() {
+      this.$emit("selectedItemsChange", this.selectedItems);
+    }
   }
 }
 </script>
@@ -53,5 +51,8 @@ export default {
 }
 .title {
   padding-left: 7px;
+}
+.subtitle {
+  font-size: 10px;
 }
 </style>
