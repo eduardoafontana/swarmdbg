@@ -1,5 +1,5 @@
 <template>
-<splitpanes class="default-theme" >
+<splitpanes class="default-theme" @resize="resizePane()">
   <pane min-size="10" size="18">
     <div class='drop-zone' @drop='onDrop($event, 0)' @dragover.prevent @dragenter.prevent>
       <div class='drag-el' v-for="item in listOne" :key='item.title' draggable @dragstart='startDrag($event, item)'>
@@ -125,6 +125,9 @@ export default {
 
       this.items[item.zoneId] = obj2;
       this.items[zoneId] = obj1;
+    },
+    resizePane (){
+      this.$frame.update();
     }
   }
 }

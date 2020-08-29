@@ -1,0 +1,62 @@
+var config = require('../../public/view/group');
+var view = require('../../public/view/view');
+
+module.exports = function (groupId, maxIndexWidthQuantity, sessionsQuantity) {
+
+    maxIndexWidthQuantity++;
+
+    var group = new window.zim.Rectangle(config.groupWidthBase * maxIndexWidthQuantity, ((config.groupHeightBase + config.shadowMarginY) * sessionsQuantity), window.frame.light, window.frame.darker)
+        .addTo(view.container);
+
+    var margin = config.groupMargin;
+
+    var groupBeforeX = 0;
+    var groupBeforeWidth = 0;
+    
+    if (groupId > 0) {
+        groupBeforeX = view.groups[groupId - 1].x;
+        groupBeforeWidth = view.groups[groupId - 1].width;
+    } else {
+        margin = 0;
+    }
+
+    var movOnX = groupBeforeX + groupBeforeWidth + margin;
+    var movOnY = movOnX;
+
+    group.pos(movOnX, movOnY);
+
+    group.sessionsQuantity = sessionsQuantity;
+
+    view.groups.push(group);
+
+    group.rot(45);
+
+    view.sliderSessionDistances.on("change", function () {
+        var marginY = view.sliderSessionDistances.currentValue;
+
+        group.heightOnly = ((config.groupHeightBase + marginY) * group.sessionsQuantity); 
+    });
+
+    view.sliderGroupDistances.on("change", function () {
+        group.rot(0);
+
+        var margin = view.sliderGroupDistances.currentValue;
+
+        var groupBeforeX = 0;
+        var groupBeforeWidth = 0;
+
+        if (groupId > 0) {
+            groupBeforeX = view.groups[groupId - 1].x;
+            groupBeforeWidth = view.groups[groupId - 1].width;
+        } else {
+            margin = 0;
+        }
+
+        var movOnX = groupBeforeX + groupBeforeWidth + margin;
+        var movOnY = movOnX;
+
+        group.pos(movOnX, movOnY);
+
+        group.rot(45);
+    });
+}

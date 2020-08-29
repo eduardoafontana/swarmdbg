@@ -11,10 +11,13 @@
     "axios": "^0.19.2",
     "bootstrap-vue": "^2.16.0",
     "core-js": "^3.6.5",
+    "help": "^3.0.2",
     "splitpanes": "^2.2.1",
     "vue": "^2.6.11",
     "vue-multipane": "^0.9.5",
-    "vue-splitpane": "^1.0.6"
+    "vue-plugin-load-script": "^1.3.2",
+    "vue-splitpane": "^1.0.6",
+    "zimjs": "^11.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.4.0",
