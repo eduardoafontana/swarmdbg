@@ -8,6 +8,7 @@
 <script>
 import Vue from 'vue'
 import view from '../../public/view/view.js'
+import dataControl from '../../public/view/data-control.js'
 
 export default {
   name: 'PanelView',
@@ -32,6 +33,16 @@ export default {
         window.frame.color = '#ddd';
 
         view.initView();
+
+        var selectedSessions = [
+            { "id": "3b92a648-7cfc-4277-82cc-5fab885b61bc" }
+        ];
+
+        dataControl.getDataFromServer(selectedSessions).then(function (dataFromServer) {
+            dataControl.data = dataFromServer;
+
+            //loadView();
+        });
 
         view.sliderZoom.on("change", function () {
              view.container.sca(2 * view.sliderZoom.currentValue, view.sliderZoom.currentValue);

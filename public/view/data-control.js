@@ -1,15 +1,16 @@
+var axios = require('axios');
+
 module.exports = (function () {
 
     var data = null;
 
-    var getDataFromServer = (selectedList) => new Promise(function (resolve, reject) {
-        var url = location.origin + '/api/Visualization/View3d';
+    var getDataFromServer = (selectedList) => new Promise(function (resolve) {
+        var url = 'http://swarmdbg.azurewebsites.net/api/Visualization/View3d';
 
-        console.log(url, resolve, reject, selectedList);
-        // $.post(url, { list: selectedList }).done(function(responseJson) {
-        //     console.log(responseJson);
-        //     resolve(responseJson);
-        // });
+        axios.post(url, { list: selectedList }).then(response => (
+            console.log(response.data),
+            resolve(response.data)
+        ));
     });
 
     var getSourceCodeFromServer = (originalId) => new Promise(function (resolve, reject) {
@@ -22,34 +23,31 @@ module.exports = (function () {
         // });
     });
 
-    var getTaskProjectDataFilterFromServer = () => new Promise(function (resolve, reject) {
-        var url = location.origin + '/api/Visualization/View3dTaskProjectFilter';
+    var getTaskProjectDataFilterFromServer = () => new Promise(function (resolve) {
+        var url = 'http://swarmdbg.azurewebsites.net/api/Visualization/View3dTaskProjectFilter';
 
-        console.log(url, resolve, reject);
-        // $.get(url, function (responseJson) {
-        //     console.log(responseJson);
-        //     resolve(responseJson);
-        // });
+        axios.get(url).then(response => (
+            console.log(response.data),
+            resolve(response.data)
+        ));
     });
 
-    var getUserDataFilteFromServer = (selectedList) => new Promise(function (resolve, reject) {
-        var url = location.origin + '/api/Visualization/View3dUserFilter';
+    var getUserDataFilteFromServer = (selectedList) => new Promise(function (resolve) {
+        var url = 'http://swarmdbg.azurewebsites.net/api/Visualization/View3dUserFilter';
 
-        console.log(url, resolve, reject, selectedList);
-        // $.post(url, { list: selectedList }).done(function (responseJson) {
-        //     console.log(responseJson);
-        //     resolve(responseJson);
-        // });
+        axios.post(url, { list: selectedList }).then(response => (
+            console.log(response.data),
+            resolve(response.data)
+        ));
     });
 
-    var getSessionDataFilteFromServer = (selectedList) => new Promise(function (resolve, reject) {
-        var url = location.origin + '/api/Visualization/View3dSessionFilter';
+    var getSessionDataFilteFromServer = (selectedList) => new Promise(function (resolve) {
+        var url = 'http://swarmdbg.azurewebsites.net/api/Visualization/View3dSessionFilter';
 
-        console.log(url, resolve, reject, selectedList);
-        // $.post(url, { list: selectedList }).done(function (responseJson) {
-        //     console.log(responseJson);
-        //     resolve(responseJson);
-        // });
+        axios.post(url, { list: selectedList }).then(response => (
+            console.log(response.data),
+            resolve(response.data)
+        ));
     });
 
     return {
