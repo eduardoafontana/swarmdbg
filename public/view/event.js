@@ -1,6 +1,6 @@
-var config = require('../../public/view/group');
+var config = require('../../public/view/config');
 var view = require('../../public/view/view');
-var dataControl = require('../../public/view/dataControl');
+var dataControl = require('../../public/view/data-control');
 
 module.exports = function (fileIndex, realFileIndex, sessionIndex, groupId, groupIndex) {
 

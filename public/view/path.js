@@ -1,5 +1,5 @@
 var view = require('../../public/view/view');
-var dataControl = require('../../public/view/dataControl');
+var dataControl = require('../../public/view/data-control');
 
 module.exports = function (sessionIndex) {
 
@@ -9,7 +9,7 @@ module.exports = function (sessionIndex) {
         points.push([ dataControl.data.sessions[sessionIndex].pathnodes[p].eventView.x, dataControl.data.sessions[sessionIndex].pathnodes[p].eventView.y ]);
     });
 
-    window.zim.zog(points);
+    window.zog(points);
 
     var path = new window.zim.Squiggle({
         controlType: "none", move: false, allowToggle: false, lockControlType: true, lockControls: true, showControls: false,

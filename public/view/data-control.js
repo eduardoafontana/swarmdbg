@@ -17,7 +17,7 @@ module.exports = (function () {
         var filter = '?originalId=' + encodeURI(originalId);
         var url = location.origin + '/api/Visualization/SourceCode' + filter;
 
-        console.log(url, resolve, reject, originalId);
+        console.log('ainda desativado', url, resolve, reject, originalId);
         // $.get(url, function(responseJson) {
         //     resolve(responseJson);
         // });
@@ -27,7 +27,7 @@ module.exports = (function () {
         var url = 'http://swarmdbg.azurewebsites.net/api/Visualization/View3dTaskProjectFilter';
 
         axios.get(url).then(response => (
-            console.log(response.data),
+            // console.log(response.data),
             resolve(response.data)
         ));
     });
@@ -36,7 +36,7 @@ module.exports = (function () {
         var url = 'http://swarmdbg.azurewebsites.net/api/Visualization/View3dUserFilter';
 
         axios.post(url, { list: selectedList }).then(response => (
-            console.log(response.data),
+            // console.log(response.data),
             resolve(response.data)
         ));
     });
@@ -45,7 +45,7 @@ module.exports = (function () {
         var url = 'http://swarmdbg.azurewebsites.net/api/Visualization/View3dSessionFilter';
 
         axios.post(url, { list: selectedList }).then(response => (
-            console.log(response.data),
+            // console.log(response.data),
             resolve(response.data)
         ));
     });

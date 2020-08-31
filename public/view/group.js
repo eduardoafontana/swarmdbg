@@ -1,4 +1,4 @@
-var config = require('../../public/view/group');
+var config = require('../../public/view/config');
 var view = require('../../public/view/view');
 
 module.exports = function (groupId, maxIndexWidthQuantity, sessionsQuantity) {
