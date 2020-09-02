@@ -44,19 +44,19 @@
         ];
 
         window.parent.dataControl.getDataFromServer(selectedSessions).then(function (dataFromServer) {
-          window.parent.dataControl.data = dataFromServer;
+            data = dataFromServer;
 
             loadView();
         });
 
         function loadView() {
-            loop(window.parent.dataControl.data.groups.length, function (i) {
-                new Group(window.parent.dataControl.data.groups[i].groupId, window.parent.dataControl.data.groups[i].maxIndexWidthQuantity, window.parent.dataControl.data.sessions.length);
+            loop(data.groups.length, function (i) {
+                new Group(data.groups[i].groupId, data.groups[i].maxIndexWidthQuantity, data.sessions.length);
             });
 
-            loop(window.parent.dataControl.data.sessions.length, function (s) {
-                loop(window.parent.dataControl.data.sessions[s].files.length, function (f) {
-                    var fileData = window.parent.dataControl.data.sessions[s].files[f];
+            loop(data.sessions.length, function (s) {
+                loop(data.sessions[s].files.length, function (f) {
+                    var fileData = data.sessions[s].files[f];
 
                     new File(s, fileData.events.length, fileData.groupId, fileData.groupIndex);
 

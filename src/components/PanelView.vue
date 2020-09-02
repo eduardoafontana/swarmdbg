@@ -7,7 +7,7 @@
 
 <script>
 import Vue from 'vue'
-import dataControl from '../modules/data-control.js'
+import serverApi from '../modules/server-api.js'
 
 import VueFriendlyIframe from 'vue-friendly-iframe';
 
@@ -29,7 +29,7 @@ export default {
   mounted(){
 
     adjustmentWidthHeightIframe();
-    window.dataControl = dataControl;
+    window.dataControl = serverApi;
 
     function adjustmentWidthHeightIframe(){
       if(document.getElementsByTagName("iframe").length === 0)

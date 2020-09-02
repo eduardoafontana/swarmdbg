@@ -2,8 +2,6 @@ var axios = require('axios');
 
 module.exports = (function () {
 
-    var data = null;
-
     var getDataFromServer = (selectedList) => new Promise(function (resolve) {
         var url = 'http://swarmdbg.azurewebsites.net/api/Visualization/View3d';
 
@@ -51,7 +49,6 @@ module.exports = (function () {
     });
 
     return {
-        data: data,
         getDataFromServer: getDataFromServer,
         getSourceCodeFromServer: getSourceCodeFromServer,
         getTaskProjectDataFilterFromServer: getTaskProjectDataFilterFromServer,

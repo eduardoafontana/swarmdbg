@@ -31,9 +31,9 @@ var Event = function (fileIndex, realFileIndex, sessionIndex, groupId, groupInde
 
     view.events.push(event);
 
-    loop(window.parent.dataControl.data.sessions[sessionIndex].pathnodes.length, function (p) {
-        if (window.parent.dataControl.data.sessions[sessionIndex].pathnodes[p].eventId == window.parent.dataControl.data.sessions[sessionIndex].files[realFileIndex].events[fileIndex].eventId) { //TODO: Refactor fileIndex to eventIndex
-            window.parent.dataControl.data.sessions[sessionIndex].pathnodes[p].eventView = event;
+    loop(data.sessions[sessionIndex].pathnodes.length, function (p) {
+        if (data.sessions[sessionIndex].pathnodes[p].eventId == data.sessions[sessionIndex].files[realFileIndex].events[fileIndex].eventId) { //TODO: Refactor fileIndex to eventIndex
+            data.sessions[sessionIndex].pathnodes[p].eventView = event;
             //TODO: aqui tem um bad smell. O dado original está sendo modificado. O ideal seria modificar a estrutura auxiliar, mas para isto é necessário esta estratégia.
         }
     });

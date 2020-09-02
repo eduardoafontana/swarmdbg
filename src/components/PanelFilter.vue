@@ -9,7 +9,7 @@
 
 <script>
 import DropdownFilter from './DropdownFilter.vue'
-import dataControl from '../modules/data-control.js'
+import serverApi from '../modules/server-api.js'
 
 export default {
   name: 'PanelFilter',
@@ -31,7 +31,7 @@ export default {
     };
   },
   mounted () {
-      dataControl.getTaskProjectDataFilterFromServer().then(data => (
+      serverApi.getTaskProjectDataFilterFromServer().then(data => (
         this.itemsTaskProject = data.map(item => ({ uid: item.taskName, title: item.taskName, subtitle: item.projectName })),
         this.loading = false
       ));
@@ -43,7 +43,7 @@ export default {
       var dataFilterUser = this.selectedItemsTaskProject.map(item => ({ taskName: item.title, projectName: item.subtitle }));
       this.loading = true;
 
-      dataControl.getUserDataFilteFromServer(dataFilterUser).then(data => (
+      serverApi.getUserDataFilteFromServer(dataFilterUser).then(data => (
         this.itemsUser = data.map(item => ({ uid: item.userName, title: item.userName, subtitle: '', taskName: item.taskName, projectName: item.projectName })),
         this.loading = false
       ));
@@ -54,7 +54,7 @@ export default {
       var dataFilterSession = this.selectedItemsUser.map(item => ({ userName: item.title, taskName: item.taskName, projectName: item.projectName }));
       this.loading = true;
 
-      dataControl.getSessionDataFilteFromServer(dataFilterSession).then(data => (
+      serverApi.getSessionDataFilteFromServer(dataFilterSession).then(data => (
           //[ {sessionId: "3b92a648-7cfc-4277-82cc-5fab885b61bc", name: "02/08/2020 02:33:03Z", breakpointCount: 0, eventCount: 7} ]
           this.itemsSession = data.map(item => ({ uid: item.sessionId, title: item.name, subtitle: '' })),
           this.loading = false

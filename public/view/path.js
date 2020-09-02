@@ -3,8 +3,8 @@ var Path = function (sessionIndex) {
 
     var points = [];
 
-    loop(window.parent.dataControl.data.sessions[sessionIndex].pathnodes.length, function (p) {
-        points.push([ window.parent.dataControl.data.sessions[sessionIndex].pathnodes[p].eventView.x, window.parent.dataControl.data.sessions[sessionIndex].pathnodes[p].eventView.y ]);
+    loop(data.sessions[sessionIndex].pathnodes.length, function (p) {
+        points.push([ data.sessions[sessionIndex].pathnodes[p].eventView.x, data.sessions[sessionIndex].pathnodes[p].eventView.y ]);
     });
 
     window.zog(points);
@@ -23,8 +23,8 @@ var Path = function (sessionIndex) {
 
         var points = [];
 
-        loop(window.parent.dataControl.data.sessions[sessionIndex].pathnodes.length, function (p) {
-            points.push([window.parent.dataControl.data.sessions[sessionIndex].pathnodes[p].eventView.x, window.parent.dataControl.data.sessions[sessionIndex].pathnodes[p].eventView.y]);
+        loop(data.sessions[sessionIndex].pathnodes.length, function (p) {
+            points.push([data.sessions[sessionIndex].pathnodes[p].eventView.x, data.sessions[sessionIndex].pathnodes[p].eventView.y]);
         });
 
         path.points = points;
@@ -32,8 +32,8 @@ var Path = function (sessionIndex) {
 
     view.sliderGroupDistances.on("change", function () {
         var points = [];
-        loop(window.parent.dataControl.data.sessions[sessionIndex].pathnodes.length, function (p) {
-            points.push([window.parent.dataControl.data.sessions[sessionIndex].pathnodes[p].eventView.x, window.parent.dataControl.data.sessions[sessionIndex].pathnodes[p].eventView.y]);
+        loop(data.sessions[sessionIndex].pathnodes.length, function (p) {
+            points.push([data.sessions[sessionIndex].pathnodes[p].eventView.x, data.sessions[sessionIndex].pathnodes[p].eventView.y]);
         });
 
         path.points = points;
