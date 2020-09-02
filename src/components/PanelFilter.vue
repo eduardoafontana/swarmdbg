@@ -9,7 +9,7 @@
 
 <script>
 import DropdownFilter from './DropdownFilter.vue'
-import dataControl from '../../public/view/data-control.js'
+import dataControl from '../modules/data-control.js'
 
 export default {
   name: 'PanelFilter',

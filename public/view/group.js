@@ -1,11 +1,9 @@
-var config = require('../../public/view/config');
-var view = require('../../public/view/view');
-
-module.exports = function (groupId, maxIndexWidthQuantity, sessionsQuantity) {
+/* eslint-disable */
+var Group = function (groupId, maxIndexWidthQuantity, sessionsQuantity) {
 
     maxIndexWidthQuantity++;
 
-    var group = new window.zim.Rectangle(config.groupWidthBase * maxIndexWidthQuantity, ((config.groupHeightBase + config.shadowMarginY) * sessionsQuantity), window.frame.light, window.frame.darker)
+    var group = new Rectangle(config.groupWidthBase * maxIndexWidthQuantity, ((config.groupHeightBase + config.shadowMarginY) * sessionsQuantity), window.frame.light, window.frame.darker)
         .addTo(view.container);
 
     var margin = config.groupMargin;

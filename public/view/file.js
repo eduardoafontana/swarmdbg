@@ -1,14 +1,12 @@
-var config = require('../../public/view/config');
-var view = require('../../public/view/view');
-
-module.exports = function (sessionIndex, numberOfEvents, groupId, groupIndex) {
+/* eslint-disable */
+var File = function (sessionIndex, numberOfEvents, groupId, groupIndex) {
 
     if (view.sessions[sessionIndex] == undefined)
         view.sessions.push({ points: [], events: [] });
 
     var height = config.fileHeightBase * numberOfEvents;
 
-    var file = new window.zim.Rectangle(config.fileWidth, height, window.frame.green, window.frame.dark)
+    var file = new Rectangle(config.fileWidth, height, window.frame.green, window.frame.dark)
         .ske(0, -45.5)
         .addTo(view.container);
 

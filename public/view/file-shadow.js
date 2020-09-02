@@ -1,9 +1,7 @@
-var config = require('../../public/view/config');
-var view = require('../../public/view/view');
+/* eslint-disable */
+var FileShadow = function (sessionIndex, groupId, groupIndex) {
 
-module.exports = function (sessionIndex, groupId, groupIndex) {
-
-    var shadow = new window.zim.Rectangle(config.shadowWidth, 10, window.frame.red, window.frame.darker).addTo(view.container);
+    var shadow = new Rectangle(config.shadowWidth, 10, window.frame.red, window.frame.darker).addTo(view.container);
 
     var marginY = config.shadowMarginY;
 

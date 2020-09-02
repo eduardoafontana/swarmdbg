@@ -127,7 +127,7 @@ export default {
       this.items[zoneId] = obj1;
     },
     resizePane (){
-      this.$frame.update();
+      // this.$frame.update();
     }
   }
 }

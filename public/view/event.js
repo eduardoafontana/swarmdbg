@@ -1,12 +1,9 @@
-var config = require('../../public/view/config');
-var view = require('../../public/view/view');
-var dataControl = require('../../public/view/data-control');
-
-module.exports = function (fileIndex, realFileIndex, sessionIndex, groupId, groupIndex) {
+/* eslint-disable */
+var Event = function (fileIndex, realFileIndex, sessionIndex, groupId, groupIndex) {
 
     //TODO: change realFileIndex for fileIndex
 
-    var event = new window.zim.Rectangle(config.eventWidth, config.eventHeight, window.frame.red, window.frame.dark).ske(0, -45.5).addTo(view.container);
+    var event = new Rectangle(config.eventWidth, config.eventHeight, window.frame.red, window.frame.dark).ske(0, -45.5).addTo(view.container);
 
     var marginYEvent = config.eventMarginY;
     var marginHeight = config.eventMarginHeight;
@@ -34,9 +31,9 @@ module.exports = function (fileIndex, realFileIndex, sessionIndex, groupId, grou
 
     view.events.push(event);
 
-    window.zim.loop(dataControl.data.sessions[sessionIndex].pathnodes.length, function (p) {
-        if (dataControl.data.sessions[sessionIndex].pathnodes[p].eventId == dataControl.data.sessions[sessionIndex].files[realFileIndex].events[fileIndex].eventId) { //TODO: Refactor fileIndex to eventIndex
-            dataControl.data.sessions[sessionIndex].pathnodes[p].eventView = event;
+    loop(window.parent.dataControl.data.sessions[sessionIndex].pathnodes.length, function (p) {
+        if (window.parent.dataControl.data.sessions[sessionIndex].pathnodes[p].eventId == window.parent.dataControl.data.sessions[sessionIndex].files[realFileIndex].events[fileIndex].eventId) { //TODO: Refactor fileIndex to eventIndex
+            window.parent.dataControl.data.sessions[sessionIndex].pathnodes[p].eventView = event;
             //TODO: aqui tem um bad smell. O dado original está sendo modificado. O ideal seria modificar a estrutura auxiliar, mas para isto é necessário esta estratégia.
         }
     });

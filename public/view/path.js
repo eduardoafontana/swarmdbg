@@ -1,17 +1,15 @@
-var view = require('../../public/view/view');
-var dataControl = require('../../public/view/data-control');
-
-module.exports = function (sessionIndex) {
+/* eslint-disable */
+var Path = function (sessionIndex) {
 
     var points = [];
 
-    window.zim.loop(dataControl.data.sessions[sessionIndex].pathnodes.length, function (p) {
-        points.push([ dataControl.data.sessions[sessionIndex].pathnodes[p].eventView.x, dataControl.data.sessions[sessionIndex].pathnodes[p].eventView.y ]);
+    loop(window.parent.dataControl.data.sessions[sessionIndex].pathnodes.length, function (p) {
+        points.push([ window.parent.dataControl.data.sessions[sessionIndex].pathnodes[p].eventView.x, window.parent.dataControl.data.sessions[sessionIndex].pathnodes[p].eventView.y ]);
     });
 
     window.zog(points);
 
-    var path = new window.zim.Squiggle({
+    var path = new Squiggle({
         controlType: "none", move: false, allowToggle: false, lockControlType: true, lockControls: true, showControls: false,
         thickness: 1, color: window.frame.dark,
         points: points
@@ -25,8 +23,8 @@ module.exports = function (sessionIndex) {
 
         var points = [];
 
-        window.zim.loop(dataControl.data.sessions[sessionIndex].pathnodes.length, function (p) {
-            points.push([dataControl.data.sessions[sessionIndex].pathnodes[p].eventView.x, dataControl.data.sessions[sessionIndex].pathnodes[p].eventView.y]);
+        loop(window.parent.dataControl.data.sessions[sessionIndex].pathnodes.length, function (p) {
+            points.push([window.parent.dataControl.data.sessions[sessionIndex].pathnodes[p].eventView.x, window.parent.dataControl.data.sessions[sessionIndex].pathnodes[p].eventView.y]);
         });
 
         path.points = points;
@@ -34,8 +32,8 @@ module.exports = function (sessionIndex) {
 
     view.sliderGroupDistances.on("change", function () {
         var points = [];
-        window.zim.loop(dataControl.data.sessions[sessionIndex].pathnodes.length, function (p) {
-            points.push([dataControl.data.sessions[sessionIndex].pathnodes[p].eventView.x, dataControl.data.sessions[sessionIndex].pathnodes[p].eventView.y]);
+        loop(window.parent.dataControl.data.sessions[sessionIndex].pathnodes.length, function (p) {
+            points.push([window.parent.dataControl.data.sessions[sessionIndex].pathnodes[p].eventView.x, window.parent.dataControl.data.sessions[sessionIndex].pathnodes[p].eventView.y]);
         });
 
         path.points = points;

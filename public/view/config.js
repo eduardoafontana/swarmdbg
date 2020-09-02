@@ -1,4 +1,5 @@
-module.exports = (function () {
+/* eslint-disable */
+var config = (function () {
 
     return {
         groupMargin: 15,
