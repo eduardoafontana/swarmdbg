@@ -1,35 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Swarm Visualization</title>
+/* eslint-disable */
+window.loadViewData = function (selectedSessions) {
 
-    <script type="text/javascript" src="../zimjs/createjs_doc_1.2.4.js"></script>
-    <script type="text/javascript" src="../zimjs/zim_doc_10.8.0.js"></script>
-    
-    <script type="text/javascript" src="config.js"></script>
-    <script type="text/javascript" src="group.js"></script>
-    <script type="text/javascript" src="file.js"></script>
-    <script type="text/javascript" src="file-shadow.js"></script>
-    <script type="text/javascript" src="path.js"></script>
-    <script type="text/javascript" src="event.js"></script>
-    <script type="text/javascript" src="view.js"></script>
-
-    <style>
-      body {
-        background-color: bisque;
-      }
-    </style>
-  </head>
-  <body>
-    <script>
     var scaling = "full";
     var color = light;
     var outerColor = darker;
 
-    var frame = new Frame({ scaling, color, outerColor, retina: true });
+    window.frame = new Frame({ scaling, color, outerColor, retina: true });
     frame.on("ready", function () {
 
         var stage = frame.stage;
@@ -38,10 +14,6 @@
         frame.color = '#ddd';
 
         view.initView();
-
-        var selectedSessions = [
-            { "id": "3b92a648-7cfc-4277-82cc-5fab885b61bc" }
-        ];
 
         window.parent.dataControl.getDataFromServer(selectedSessions).then(function (dataFromServer) {
             data = dataFromServer;
@@ -74,13 +46,11 @@
         }
 
         view.sliderZoom.on("change", function () {
-             view.container.sca(2 * view.sliderZoom.currentValue, view.sliderZoom.currentValue);
+            view.container.sca(2 * view.sliderZoom.currentValue, view.sliderZoom.currentValue);
         });
 
         view.container.loc(450, 400);
 
         stage.update();
     });
-    </script>
-  </body>
-</html>
+  }

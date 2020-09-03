@@ -15,18 +15,18 @@ var view =  (function () {
 
     var initView = function () {
 
-        this.container = new window.zim.Container(400, 400);
+        this.container = new Container(400, 400);
         this.container.center();
         this.container.sca(2, 1);
         this.container.gesture();
 
-        this.sliderZoom = new Slider({ min: 0.1, max: 5, step: 0.1, vertical: true, button: new window.zim.Rectangle(20, 10, window.frame.light, window.frame.darker) }).pos(100, 10);
+        this.sliderZoom = new Slider({ min: 0.1, max: 5, step: 0.1, vertical: true, button: new Rectangle(20, 10, window.frame.light, window.frame.darker) }).pos(100, 10);
         this.sliderZoom.currentValue = 1;
 
-        this.sliderSessionDistances = new Slider({ min: 1, max: 35, step: 1, vertical: true, button: new window.zim.Rectangle(20, 10, window.frame.light, window.frame.darker) }).pos(50, 10);
+        this.sliderSessionDistances = new Slider({ min: 1, max: 35, step: 1, vertical: true, button: new Rectangle(20, 10, window.frame.light, window.frame.darker) }).pos(50, 10);
         this.sliderSessionDistances.currentValue = config.shadowMarginY;
 
-        this.sliderGroupDistances = new Slider({ min: 1, max: 35, step: 1, vertical: true, button: new window.zim.Rectangle(20, 10, window.frame.light, window.frame.darker) }).pos(150, 10);
+        this.sliderGroupDistances = new Slider({ min: 1, max: 35, step: 1, vertical: true, button: new Rectangle(20, 10, window.frame.light, window.frame.darker) }).pos(150, 10);
         this.sliderGroupDistances.currentValue = config.groupMargin;
     };
 
