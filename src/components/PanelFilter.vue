@@ -10,6 +10,7 @@
 <script>
 import DropdownFilter from './DropdownFilter.vue'
 import serverApi from '../modules/server-api.js'
+import eventBus from "../modules/event-bus.js";
 
 export default {
   name: 'PanelFilter',
@@ -62,6 +63,8 @@ export default {
     },
     changeSession: function(params) {
       this.selectedItemsSession = params;
+
+      eventBus.$emit('selectedSessionChangedEvent', this.selectedItemsSession.map(item => ({ id: item.uid })));
     }
   }
 }

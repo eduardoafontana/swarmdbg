@@ -7,8 +7,8 @@
 
 <script>
 import serverApi from '../modules/server-api.js'
-
 import VueFriendlyIframe from './FriendlyIFrame.vue';
+import eventBus from "../modules/event-bus.js";
 
 export default {
   name: 'PanelView',
@@ -32,12 +32,17 @@ export default {
   components: {
       VueFriendlyIframe
   },
+  created() {
+    eventBus.$on("selectedSessionChangedEvent", (selectedItemsSession) => {
+      window.frames['viewIFrame'].window.loadSession(selectedItemsSession);
+    });
+  },
   mounted(){
     window.dataControl = serverApi;
   },
   methods: {
     loadView() {
-      window.frames['viewIFrame'].window.loadViewData([ { "id": "3b92a648-7cfc-4277-82cc-5fab885b61bc" } ]);
+      window.frames['viewIFrame'].window.initCanvasView();
     }
   },
   watch: {
