@@ -1,10 +1,10 @@
 <template>
-<splitpanes class="default-theme">
-  <pane min-size="10" size="18">
+<splitpanes>
+  <pane min-size="10" size="17">
     <div class='drop-zone' @drop='onDrop($event, 0)' @dragover.prevent @dragenter.prevent>
       <div class='drag-el' v-for="item in listOne" :key='item.title' draggable @dragstart='startDrag($event, item)'>
         <div class="panel-head">
-          Panel Head: {{ item.title }} title
+          FILTER
         </div>
         <div class="panel-content" @dragstart.prevent draggable="disable">
             <keep-alive>
@@ -18,7 +18,7 @@
     <div class='drop-zone' @drop='onDrop($event, 1)' @dragover.prevent @dragenter.prevent>
       <div class='drag-el' v-for="item in listTwo" :key='item.title' draggable @dragstart='startDrag($event, item)'>
         <div class="panel-head">
-          Panel Head: {{ item.title }} title
+          VIEW
         </div>
         <div class="panel-content" @dragstart.prevent draggable="disable">
           <keep-alive>
@@ -32,7 +32,7 @@
     <div class='drop-zone' @drop='onDrop($event, 2)' @dragover.prevent @dragenter.prevent>
       <div class='drag-el' v-for="item in listThree" :key='item.title' draggable @dragstart='startDrag($event, item)'>
         <div class="panel-head">
-          Panel Head: {{ item.title }} title
+          CODE
         </div>
         <div class="panel-content" @dragstart.prevent draggable="disable">
           <keep-alive>
@@ -130,30 +130,70 @@ export default {
 }
 </script>
 
-<style scoped>
-  .splitpanes__pane { 
-    background-color:bisque;
-    padding: 5px;
-  }
+<style>
+    .splitpanes__splitter { 
+      background-color: #333642;
+      box-sizing: border-box;
+      position: relative;
+      flex-shrink: 0;
+    }
 
+    .splitpanes--vertical > .splitpanes__splitter {
+      min-width: 10px;
+      margin-left: -1px;
+    }
+
+  .splitpanes--vertical > .splitpanes__splitter:after, 
+  .splitpanes--vertical > .splitpanes__splitter:before {
+      transform: translateY(-50%);
+      width: 1px;
+      height: 30px;
+
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background-color: #fff;
+      transition: background-color .3s;
+
+      box-sizing: border-box;
+    }
+
+    .splitpanes--vertical > .splitpanes__splitter:before {
+      margin-left: -2px;
+    }
+
+    .splitpanes--vertical > .splitpanes__splitter:after {
+      margin-left: 1px;
+    }
+</style>
+
+<style scoped>
   .drop-zone {
-    background-color:whitesmoke;
-    padding: 5px;
     height: 100%;
   }
 
   .drag-el {
-    background-color: #fff;
-    padding: 5px;
+    background-color: #1D1E22;
     height: 100%;
   }
 
   .panel-head {
     cursor: move;
+    background-color: #1A1B1F;
+    
+    white-space: nowrap;
+    font-weight: bold;
+    color: #aaaebc;
+    font-size: 16px;
+    padding-left: 4px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    vertical-align: middle
   }
 
   .panel-content {
-    background-color: azure;
+    background-color: #29292D;
     height: 100%;
   }
 </style>

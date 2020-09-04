@@ -1,6 +1,5 @@
 <template>
   <div class="divFrame">
-    <b>Panel View</b>
     <vue-friendly-iframe name="viewIFrame" @load="loadView" :script="scripts" width="100%" height="100%"></vue-friendly-iframe>
   </div>
 </template>

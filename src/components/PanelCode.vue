@@ -1,5 +1,5 @@
 <template>
-  <div><b>Panel Code</b></div>
+  <div></div>
 </template>
 
 <script>
