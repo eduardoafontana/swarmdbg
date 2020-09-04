@@ -1,5 +1,11 @@
 <template>
   <div id="app">
+    <b-navbar type="dark" variant="dark">
+      <b-navbar-brand>
+        <b-icon font-scale="1.5" icon="bug-fill"></b-icon>
+        <div>Swarm Debugging</div>
+      </b-navbar-brand>
+    </b-navbar>
     <PanelTemplate msg="Test message"/>
   </div>
 </template>
@@ -36,5 +42,12 @@ html, body, #app {
   margin: 0px 0px 0px 0px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   font-size: 14px;
+  padding-bottom: 18px;
+  background-color: #333642;
+}
+
+.navbar-brand div {
+  float: right;
+  padding-left: 10px;
 }
 </style>
