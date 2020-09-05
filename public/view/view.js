@@ -2,7 +2,6 @@
 var view =  (function () {
 
     var container = null;
-    var sliderZoom = null;
     var sliderSessionDistances = null;
     var sliderGroupDistances = null;
 
@@ -20,9 +19,6 @@ var view =  (function () {
         this.container.sca(2, 1);
         this.container.gesture();
 
-        this.sliderZoom = new Slider({ min: 0.1, max: 5, step: 0.1, vertical: true, button: new Rectangle(20, 10, window.frame.light, window.frame.darker) }).pos(100, 10);
-        this.sliderZoom.currentValue = 1;
-
         this.sliderSessionDistances = new Slider({ min: 1, max: 35, step: 1, vertical: true, button: new Rectangle(20, 10, window.frame.light, window.frame.darker) }).pos(50, 10);
         this.sliderSessionDistances.currentValue = config.shadowMarginY;
 
@@ -33,7 +29,6 @@ var view =  (function () {
     return {
         initView: initView,
         container: container,
-        sliderZoom: sliderZoom,
         sliderSessionDistances: sliderSessionDistances,
         sliderGroupDistances: sliderGroupDistances,
 

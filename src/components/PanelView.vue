@@ -1,5 +1,17 @@
 <template>
   <div class="divFrame">
+    <b-button-toolbar>
+      <ZoomControl @zoomValChanged="zoomChanged" />
+      <b-button-group class="mx-1">
+        <b-button title="Fit Content">
+          <b-iconstack font-scale="1.3">
+            <b-icon stacked icon="arrows-angle-contract"></b-icon>
+            <b-icon stacked icon="arrows-angle-contract" rotate="90"></b-icon>
+          </b-iconstack>
+        </b-button>
+      </b-button-group>
+
+    </b-button-toolbar>
     <vue-friendly-iframe name="viewIFrame" @load="loadView" :script="scripts" width="100%" height="100%"></vue-friendly-iframe>
   </div>
 </template>
@@ -8,6 +20,7 @@
 import serverApi from '../modules/server-api.js'
 import VueFriendlyIframe from './FriendlyIFrame.vue';
 import eventBus from "../modules/event-bus.js";
+import ZoomControl from "./ZoomControl.vue"
 
 export default {
   name: 'PanelView',
@@ -29,7 +42,8 @@ export default {
     };
   },
   components: {
-      VueFriendlyIframe
+      VueFriendlyIframe,
+      ZoomControl
   },
   created() {
     eventBus.$on("selectedSessionChangedEvent", (selectedItemsSession) => {
@@ -42,6 +56,9 @@ export default {
   methods: {
     loadView() {
       window.frames['viewIFrame'].window.initCanvasView();
+    },
+    zoomChanged(val) {
+      window.frames['viewIFrame'].window.changeZoom(val);
     }
   },
   watch: {
@@ -58,5 +75,13 @@ export default {
 .vue-friendly-iframe {
   width: 100%;
   height: 100%;
+}
+
+.btn-toolbar {
+  padding: 10px;
+}
+
+.slider {
+  height: 10px;
 }
 </style>

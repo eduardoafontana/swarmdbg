@@ -47,12 +47,13 @@ window.initCanvasView = function () {
 
         view.initView();
 
-        view.sliderZoom.on("change", function () {
-            view.container.sca(2 * view.sliderZoom.currentValue, view.sliderZoom.currentValue);
-        });
-
         view.container.loc(450, 400);
 
         stage.update();
     });
 }
+
+window.changeZoom = function (val) {
+    view.container.sca(2 * val, val);
+    window.frame.stage.update();
+};
