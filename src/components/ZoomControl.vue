@@ -14,6 +14,11 @@
 export default {
   name: 'ZoomControl',
   props: {
+    zoomObject: {
+      type: Object,
+      required: false,
+      default: null
+    }
   },
   data(){
     return {
@@ -40,11 +45,20 @@ export default {
             return;
 
         this.sliderVal = value;
+    },
+    onScroll(e) {
+      if(e.wheelDelta > 0)
+        this.zoomIn();
+      else
+        this.zoomOut();
     }
   },
   watch: {
     sliderVal() {
         this.$emit('zoomValChanged', this.sliderVal);
+    },
+    zoomObject() {
+      this.zoomObject.element.addEventListener("wheel", this.onScroll);
     }
   }
 }

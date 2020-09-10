@@ -1,7 +1,7 @@
 <template>
   <div class="divFrame">
     <b-button-toolbar>
-      <ZoomControl @zoomValChanged="zoomChanged" />
+      <ZoomControl @zoomValChanged="zoomChanged" :zoomObject="zoomElement" />
       <b-button-group class="mx-1">
         <b-button title="Fit Content">
           <b-iconstack font-scale="1.3">
@@ -38,7 +38,8 @@ export default {
                 '../view/path.js', 
                 '../view/event.js', 
                 '../view/view.js',
-                '../view/start.js']
+                '../view/start.js'],
+      zoomElement: {}
     };
   },
   components: {
@@ -52,6 +53,8 @@ export default {
   },
   mounted(){
     window.dataControl = serverApi;
+
+    this.zoomElement = { element: window.frames['viewIFrame'] };
   },
   methods: {
     loadView() {
