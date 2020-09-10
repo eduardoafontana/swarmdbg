@@ -9,11 +9,13 @@ window.loadSession = function (selectedSessions) {
     });
 
     function cleanView() {
-        view.container.removeAllChildren();
+        window.frame.stage.removeAllChildren();
         window.frame.stage.update();
     }
 
     function loadView() {
+        view.initView();
+
         loop(data.groups.length, function (i) {
             new Group(data.groups[i].groupId, data.groups[i].maxIndexWidthQuantity, data.sessions.length);
         });
