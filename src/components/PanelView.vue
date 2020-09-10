@@ -3,7 +3,7 @@
     <b-button-toolbar>
       <ZoomControl @zoomValChanged="zoomChanged" :zoomObject="zoomElement" />
       <b-button-group class="mx-1">
-        <b-button title="Fit Content">
+        <b-button title="Fit Content" v-on:click="onFrameResize">
           <b-iconstack font-scale="1.3">
             <b-icon stacked icon="arrows-angle-contract"></b-icon>
             <b-icon stacked icon="arrows-angle-contract" rotate="90"></b-icon>
@@ -55,6 +55,8 @@ export default {
     window.dataControl = serverApi;
 
     this.zoomElement = { element: window.frames['viewIFrame'] };
+
+    window.frames['viewIFrame'].addEventListener("resize", this.onFrameResize);
   },
   methods: {
     loadView() {
@@ -62,6 +64,12 @@ export default {
     },
     zoomChanged(val) {
       window.frames['viewIFrame'].window.changeZoom(val);
+    },
+    onFrameResize() {
+      let width = Number((window.frames['viewIFrame'].window.document.documentElement.clientWidth / 2).toFixed(0));
+      let height = Number((window.frames['viewIFrame'].window.document.documentElement.clientHeight / 2).toFixed(0));
+
+      window.frames['viewIFrame'].window.centralizeTo(width, height);
     }
   },
   watch: {

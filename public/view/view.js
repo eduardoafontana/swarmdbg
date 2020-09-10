@@ -14,7 +14,7 @@ var view =  (function () {
 
     var initView = function () {
 
-        this.container = new Container(400, 400);
+        this.container = new Container(1, 1);
         this.container.center();
         this.container.sca(2, 1);
         this.container.gesture();
