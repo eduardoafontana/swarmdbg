@@ -27,7 +27,9 @@ var FileShadow = function (sessionIndex, groupId, groupIndex) {
     shadow.sessionDistanceChange = function (val) {
         shadow.rot(0);
 
-        var marginY = val;
+        view.currentSessionDistance = val;
+
+        var marginY = view.currentSessionDistance;
 
         if (shadow.sessionIndex == 0) {
             marginY = 0;
@@ -41,12 +43,12 @@ var FileShadow = function (sessionIndex, groupId, groupIndex) {
         shadow.pos(movOnX, movOnY);
 
         shadow.rot(45);
-    }
+    };
 
-    view.sliderGroupDistances.on("change", function () {
+    shadow.groupDistanceChange = function () {
         shadow.rot(0);
 
-        var marginY = view.sliderSessionDistances.currentValue;
+        var marginY = view.currentSessionDistance;
 
         if (shadow.sessionIndex == 0) {
             marginY = 0;
@@ -60,5 +62,5 @@ var FileShadow = function (sessionIndex, groupId, groupIndex) {
         shadow.pos(movOnX, movOnY);
 
         shadow.rot(45);
-    });
+    };
 }

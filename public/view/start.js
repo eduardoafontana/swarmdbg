@@ -10,7 +10,7 @@ window.loadSession = function (selectedSessions) {
 
     function cleanView() {
         view.cleanView();
-        
+
         window.frame.stage.removeAllChildren();
         window.frame.stage.update();
     }
@@ -56,8 +56,6 @@ window.initCanvasView = function () {
         frame.outerColor = '#444';
         frame.color = '#ddd';
 
-        view.initView();
-
         stage.update();
     });
 }
@@ -94,6 +92,30 @@ window.changeSessionDistance = function(val) {
 
     view.paths.forEach(e => {
         e.sessionDistanceChange();
+    });
+
+    window.frame.stage.update();
+};
+
+window.changeGroupDistance = function(val) {
+    view.files.forEach(e => {
+        e.groupDistanceChange(val);
+    });
+
+    view.events.forEach(e => {
+        e.groupDistanceChange(val);
+    });
+
+    view.shadows.forEach(e => {
+        e.groupDistanceChange(val);
+    });
+
+    view.groups.forEach(e => {
+        e.groupDistanceChange(val);
+    });
+
+    view.paths.forEach(e => {
+        e.groupDistanceChange();
     });
 
     window.frame.stage.update();

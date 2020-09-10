@@ -35,10 +35,10 @@ var Group = function (groupId, maxIndexWidthQuantity, sessionsQuantity) {
         group.heightOnly = ((config.groupHeightBase + marginY) * group.sessionsQuantity); 
     };
 
-    view.sliderGroupDistances.on("change", function () {
+    group.groupDistanceChange = function (val) {
         group.rot(0);
 
-        var margin = view.sliderGroupDistances.currentValue;
+        var margin = val;
 
         var groupBeforeX = 0;
         var groupBeforeWidth = 0;
@@ -56,5 +56,5 @@ var Group = function (groupId, maxIndexWidthQuantity, sessionsQuantity) {
         group.pos(movOnX, movOnY);
 
         group.rot(45);
-    });
+    };
 }

@@ -27,12 +27,12 @@ var Path = function (sessionIndex) {
         path.points = points;
     };
 
-    view.sliderGroupDistances.on("change", function () {
+    path.groupDistanceChange = function () {
         var points = [];
         loop(data.sessions[sessionIndex].pathnodes.length, function (p) {
             points.push([data.sessions[sessionIndex].pathnodes[p].eventView.x, data.sessions[sessionIndex].pathnodes[p].eventView.y]);
         });
 
         path.points = points;
-    });
+    };
 }
