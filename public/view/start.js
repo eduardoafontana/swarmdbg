@@ -3,8 +3,15 @@ window.loadSession = function (selectedSessions) {
     window.parent.dataControl.getDataFromServer(selectedSessions).then(function (dataFromServer) {
         data = dataFromServer;
 
+        cleanView();
+
         loadView();
     });
+
+    function cleanView() {
+        view.container.removeAllChildren();
+        window.frame.stage.update();
+    }
 
     function loadView() {
         loop(data.groups.length, function (i) {
