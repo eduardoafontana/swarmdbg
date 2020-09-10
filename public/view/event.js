@@ -38,10 +38,8 @@ var Event = function (fileIndex, realFileIndex, sessionIndex, groupId, groupInde
         }
     });
 
-
-    view.sliderSessionDistances.on("change", function () {
-
-        var marginY = view.sliderSessionDistances.currentValue;
+    event.sessionDistanceChange = function (val) {
+        var marginY = val;
         var marginHeight = config.eventMarginHeight;
 
         if (event.sessionIndex == 0) {
@@ -59,7 +57,7 @@ var Event = function (fileIndex, realFileIndex, sessionIndex, groupId, groupInde
             + marginHeight;
 
         event.pos(movOnX, movOnY);
-    });
+    };
 
     view.sliderGroupDistances.on("change", function () {
         var marginY = view.sliderSessionDistances.currentValue;

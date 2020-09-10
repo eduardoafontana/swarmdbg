@@ -7,8 +7,6 @@ var Path = function (sessionIndex) {
         points.push([ data.sessions[sessionIndex].pathnodes[p].eventView.x, data.sessions[sessionIndex].pathnodes[p].eventView.y ]);
     });
 
-    window.zog(points);
-
     var path = new Squiggle({
         controlType: "none", move: false, allowToggle: false, lockControlType: true, lockControls: true, showControls: false,
         thickness: 1, color: window.frame.dark,
@@ -19,8 +17,7 @@ var Path = function (sessionIndex) {
 
     //new Circle(10, red).addTo().animate({path:line}, 3000);
 
-    view.sliderSessionDistances.on("change", function () {
-
+    path.sessionDistanceChange = function () {
         var points = [];
 
         loop(data.sessions[sessionIndex].pathnodes.length, function (p) {
@@ -28,7 +25,7 @@ var Path = function (sessionIndex) {
         });
 
         path.points = points;
-    });
+    };
 
     view.sliderGroupDistances.on("change", function () {
         var points = [];

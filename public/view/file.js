@@ -28,10 +28,9 @@ var File = function (sessionIndex, numberOfEvents, groupId, groupIndex) {
     file.pos(movOnX, movOnY);
 
     view.files.push(file);
-
-
-    view.sliderSessionDistances.on("change", function () {
-        var marginY = view.sliderSessionDistances.currentValue;
+    
+    file.sessionDistanceChange = function (val) {
+        var marginY = val;
 
         if (file.sessionIndex == 0) {
             marginY = 0;
@@ -43,8 +42,7 @@ var File = function (sessionIndex, numberOfEvents, groupId, groupIndex) {
         var movOnY = view.groups[file.groupId].y + ((config.fileWidth + config.fileMargin) * file.groupIndex) + marginY - config.fileTopBase;
 
         file.pos(movOnX, movOnY);
-    });
-
+    };
 
     view.sliderGroupDistances.on("change", function () {
         var marginY = view.sliderSessionDistances.currentValue;

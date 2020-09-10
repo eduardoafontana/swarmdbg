@@ -9,6 +9,8 @@ window.loadSession = function (selectedSessions) {
     });
 
     function cleanView() {
+        view.cleanView();
+        
         window.frame.stage.removeAllChildren();
         window.frame.stage.update();
     }
@@ -70,5 +72,29 @@ window.centralizeTo = function(width, height) {
         return;
 
     view.container.loc(width, height);
+    window.frame.stage.update();
+};
+
+window.changeSessionDistance = function(val) {
+    view.files.forEach(e => {
+        e.sessionDistanceChange(val);
+    });
+
+    view.events.forEach(e => {
+        e.sessionDistanceChange(val);
+    });
+
+    view.shadows.forEach(e => {
+        e.sessionDistanceChange(val);
+    });
+
+    view.groups.forEach(e => {
+        e.sessionDistanceChange(val);
+    });
+
+    view.paths.forEach(e => {
+        e.sessionDistanceChange();
+    });
+
     window.frame.stage.update();
 };

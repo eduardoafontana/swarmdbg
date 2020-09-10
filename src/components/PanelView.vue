@@ -11,6 +11,8 @@
         </b-button>
       </b-button-group>
 
+      <SessionDistanceControl @sessionDistanceValChanged="sessionDistanceChanged" />
+
     </b-button-toolbar>
     <vue-friendly-iframe name="viewIFrame" @load="loadView" :script="scripts" width="100%" height="100%"></vue-friendly-iframe>
   </div>
@@ -21,6 +23,7 @@ import serverApi from '../modules/server-api.js'
 import VueFriendlyIframe from './FriendlyIFrame.vue';
 import eventBus from "../modules/event-bus.js";
 import ZoomControl from "./ZoomControl.vue"
+import SessionDistanceControl from "./SessionDistanceControl.vue"
 
 export default {
   name: 'PanelView',
@@ -44,7 +47,8 @@ export default {
   },
   components: {
       VueFriendlyIframe,
-      ZoomControl
+      ZoomControl,
+      SessionDistanceControl
   },
   created() {
     eventBus.$on("selectedSessionChangedEvent", (selectedItemsSession) => {
@@ -64,6 +68,9 @@ export default {
     },
     zoomChanged(val) {
       window.frames['viewIFrame'].window.changeZoom(val);
+    },
+    sessionDistanceChanged(val) {
+      window.frames['viewIFrame'].window.changeSessionDistance(val);
     },
     onFrameResize() {
       let width = Number((window.frames['viewIFrame'].window.document.documentElement.clientWidth / 2).toFixed(0));

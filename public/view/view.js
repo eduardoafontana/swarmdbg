@@ -26,8 +26,19 @@ var view =  (function () {
         this.sliderGroupDistances.currentValue = config.groupMargin;
     };
 
+    var cleanView = function () {
+        this.container = null;
+        this.groups = [];
+        this.files = [];
+        this.shadows = [];
+        this.events = [];
+        this.paths = [];
+        this.sessions = [];
+    };
+
     return {
         initView: initView,
+        cleanView: cleanView,
         container: container,
         sliderSessionDistances: sliderSessionDistances,
         sliderGroupDistances: sliderGroupDistances,

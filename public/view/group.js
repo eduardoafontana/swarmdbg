@@ -29,11 +29,11 @@ var Group = function (groupId, maxIndexWidthQuantity, sessionsQuantity) {
 
     group.rot(45);
 
-    view.sliderSessionDistances.on("change", function () {
-        var marginY = view.sliderSessionDistances.currentValue;
+    group.sessionDistanceChange = function (val) {
+        var marginY = val;
 
         group.heightOnly = ((config.groupHeightBase + marginY) * group.sessionsQuantity); 
-    });
+    };
 
     view.sliderGroupDistances.on("change", function () {
         group.rot(0);

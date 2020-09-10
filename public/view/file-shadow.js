@@ -24,11 +24,10 @@ var FileShadow = function (sessionIndex, groupId, groupIndex) {
 
     view.shadows.push(shadow);
 
-
-    view.sliderSessionDistances.on("change", function () {
+    shadow.sessionDistanceChange = function (val) {
         shadow.rot(0);
 
-        var marginY = view.sliderSessionDistances.currentValue;
+        var marginY = val;
 
         if (shadow.sessionIndex == 0) {
             marginY = 0;
@@ -42,7 +41,7 @@ var FileShadow = function (sessionIndex, groupId, groupIndex) {
         shadow.pos(movOnX, movOnY);
 
         shadow.rot(45);
-    });
+    }
 
     view.sliderGroupDistances.on("change", function () {
         shadow.rot(0);
