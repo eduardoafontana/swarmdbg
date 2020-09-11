@@ -3,7 +3,7 @@ var axios = require('axios');
 module.exports = (function () {
 
     var getDataFromServer = (selectedList) => new Promise(function (resolve) {
-        var url = 'http://swarmdbg.azurewebsites.net/api/Visualization/View3d';
+        var url = 'https://swarmdbg.azurewebsites.net/api/Visualization/View3d';
 
         axios.post(url, { list: selectedList }).then(response => (
             console.log(response.data),
@@ -22,7 +22,7 @@ module.exports = (function () {
     });
 
     var getTaskProjectDataFilterFromServer = () => new Promise(function (resolve) {
-        var url = 'http://swarmdbg.azurewebsites.net/api/Visualization/View3dTaskProjectFilter';
+        var url = 'https://swarmdbg.azurewebsites.net/api/Visualization/View3dTaskProjectFilter';
 
         axios.get(url).then(response => (
             // console.log(response.data),
@@ -31,7 +31,7 @@ module.exports = (function () {
     });
 
     var getUserDataFilteFromServer = (selectedList) => new Promise(function (resolve) {
-        var url = 'http://swarmdbg.azurewebsites.net/api/Visualization/View3dUserFilter';
+        var url = 'https://swarmdbg.azurewebsites.net/api/Visualization/View3dUserFilter';
 
         axios.post(url, { list: selectedList }).then(response => (
             // console.log(response.data),
@@ -40,7 +40,7 @@ module.exports = (function () {
     });
 
     var getSessionDataFilteFromServer = (selectedList) => new Promise(function (resolve) {
-        var url = 'http://swarmdbg.azurewebsites.net/api/Visualization/View3dSessionFilter';
+        var url = 'https://swarmdbg.azurewebsites.net/api/Visualization/View3dSessionFilter';
 
         axios.post(url, { list: selectedList }).then(response => (
             // console.log(response.data),
