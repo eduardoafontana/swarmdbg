@@ -3,6 +3,8 @@
     <DropdownFilter title="Tasks / Projects" :items="itemsTaskProject" :preLoad="selectedItemsTaskProject" @selectedItemsChange="changeTaskProject" :loading="loading"></DropdownFilter>
     <DropdownFilter title="Users" :items="itemsUser" :preLoad="selectedItemsUser" @selectedItemsChange="changeUser" :loading="loading"></DropdownFilter>
     <DropdownFilter title="Sessions" :items="itemsSession" :preLoad="selectedItemsSession" @selectedItemsChange="changeSession" :loading="loading"></DropdownFilter>
+
+    <TreeFilter title="Sessions"></TreeFilter>
   </div>
 </template>
 
@@ -10,6 +12,7 @@
 import DropdownFilter from './DropdownFilter.vue'
 import serverApi from '../modules/server-api.js'
 import eventBus from "../modules/event-bus.js";
+import TreeFilter from './TreeFilter.vue'
 
 export default {
   name: 'PanelFilter',
@@ -17,7 +20,8 @@ export default {
     msg: String
   },
   components: {
-    DropdownFilter
+    DropdownFilter,
+    TreeFilter
   },
   data() {
     return {
