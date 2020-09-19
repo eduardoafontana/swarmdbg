@@ -4,7 +4,7 @@
     <DropdownFilter title="Users" :items="itemsUser" :preLoad="selectedItemsUser" @selectedItemsChange="changeUser" :loading="loading"></DropdownFilter>
     <DropdownFilter title="Sessions" :items="itemsSession" :preLoad="selectedItemsSession" @selectedItemsChange="changeSession" :loading="loading"></DropdownFilter>
 
-    <TreeFilter title="Sessions"></TreeFilter>
+    <TreeFilter title="Sessions" :items="itemsTreeSession" :loading="loadingTree"></TreeFilter>
   </div>
 </template>
 
@@ -13,6 +13,7 @@ import DropdownFilter from './DropdownFilter.vue'
 import serverApi from '../modules/server-api.js'
 import eventBus from "../modules/event-bus.js";
 import TreeFilter from './TreeFilter.vue'
+import uuidV1 from 'uuid/v1';
 
 export default {
   name: 'PanelFilter',
@@ -25,22 +26,50 @@ export default {
   },
   data() {
     return {
+      itemsTreeSession: [],
       itemsTaskProject: [],
       itemsUser: [],
       itemsSession: [],
       selectedItemsTaskProject : [],
       selectedItemsUser : [],
       selectedItemsSession : [],
-      loading: true
+      loading: true,
+      loadingTree: true,
     };
   },
   mounted () {
       serverApi.getTaskProjectDataFilterFromServer().then(data => (
         this.itemsTaskProject = data.map(item => ({ uid: item.taskName, title: item.taskName, subtitle: item.projectName })),
-        this.loading = false
+        this.loading = false,
+
+        this.loadTreeTaskProject(data)
       ));
   },
   methods: {
+    loadTreeTaskProject: function(data) {
+        this.itemsTreeSession = data.map(item => ({ id: uuidV1(), name: item.taskName, subtitle: item.projectName, children: [] })),
+        this.loadTreeUser();
+    },
+    loadTreeUser: function(){
+        this.itemsTreeSession.forEach((taskProjectItem) => {
+          var dataFilterUser = [{ taskName: taskProjectItem.name, projectName: taskProjectItem.subtitle }];
+
+          serverApi.getUserDataFilteFromServer(dataFilterUser).then(data => (
+            taskProjectItem.children = data.map(item => ({ id: uuidV1(), name: item.userName, taskName: item.taskName, projectName: item.projectName, children: [] })),
+            this.loadTreeSession(taskProjectItem.children)
+          ));
+        })
+    },
+    loadTreeSession: function(children){
+      children.forEach((userItem) => {
+        var dataFilterSession = [{ userName: userItem.name, taskName: userItem.taskName, projectName: userItem.projectName }];
+        
+        serverApi.getSessionDataFilteFromServer(dataFilterSession).then(data => (
+            userItem.children = data.map(item => ({ id: item.sessionId, name: item.name })),
+            this.loadingTree = false
+        ));
+      })
+    },
     changeTaskProject: function(params) {
       this.selectedItemsTaskProject = params;
 

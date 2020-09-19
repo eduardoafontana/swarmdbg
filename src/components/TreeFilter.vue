@@ -4,7 +4,8 @@
       <span class="title">{{ title }}</span>
       <v-app class="vapp">
          <v-main>
-          <v-treeview
+          <div v-if="loading">Loading <b-icon icon="three-dots" animation="cylon"></b-icon></div>
+          <v-treeview 
             :items="items"
             :dense="true"
             :selectable="true"
@@ -33,55 +34,19 @@ export default {
   name: 'TreeFilter',
   props: {
     title: String,
+    items: Array,
+    loading: Boolean
   },
   components: {
   },
   data() {
     return {
-      itemsTaskProject: [],
-      itemsUser: [],
-      itemsSession: [],
-      selectedItemsTaskProject : [],
-      selectedItemsUser : [],
-      selectedItemsSession : [],
-      loading: true,
-      items: [
-        {
-          id: 1,
-          name: 'Nível 1 A',
-          children: [
-            { id: 2, name: 'Nivel 2 A' },
-            { id: 3, name: 'Nível 2 B' },
-            { id: 4, name: 'Nível 2 C' },
-          ],
-        },
-        {
-          id: 5,
-          name: 'Nível 1 B :',
-          children: [
-            {
-              id: 6,
-              name: 'Nível 2 A :',
-              children: [
-                {
-                  id: 7,
-                  name: 'Nível 3 A',
-                },
-              ],
-            },
-            {
-              id: 10,
-              name: 'Nível 2 B',
-              children: [
-                {
-                  id: 11,
-                  name: 'Nível 3 A',
-                },
-              ],
-            },
-          ],
-        },
-      ]
+      // itemsTaskProject: [],
+      // itemsUser: [],
+      // itemsSession: [],
+      // selectedItemsTaskProject : [],
+      // selectedItemsUser : [],
+      // selectedItemsSession : [],
     };
   },
   mounted () {
