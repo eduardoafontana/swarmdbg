@@ -4,7 +4,7 @@
     <DropdownFilter title="Users" :items="itemsUser" :preLoad="selectedItemsUser" @selectedItemsChange="changeUser" :loading="loading"></DropdownFilter>
     <DropdownFilter title="Sessions" :items="itemsSession" :preLoad="selectedItemsSession" @selectedItemsChange="changeSession" :loading="loading"></DropdownFilter>
 
-    <TreeFilter title="Sessions" :items="itemsTreeSession" :loading="loadingTree"></TreeFilter>
+    <TreeFilter title="Sessions" :items="itemsTreeSession" :loading="loadingTree" @selectedItemsChange="changeTreeSession"></TreeFilter>
   </div>
 </template>
 
@@ -33,6 +33,7 @@ export default {
       selectedItemsTaskProject : [],
       selectedItemsUser : [],
       selectedItemsSession : [],
+      selectedItemsTreeSession : [],
       loading: true,
       loadingTree: true,
     };
@@ -97,8 +98,13 @@ export default {
       this.selectedItemsSession = params;
 
       eventBus.$emit('selectedSessionChangedEvent', this.selectedItemsSession.map(item => ({ id: item.uid })));
+    },
+    changeTreeSession: function(params) {
+      this.selectedItemsTreeSession = params;
+
+      eventBus.$emit('selectedSessionChangedEvent', this.selectedItemsTreeSession.map(value => ({ id: value })));
     }
-  }
+  },
 }
 </script>
 

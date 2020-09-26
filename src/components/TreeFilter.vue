@@ -16,6 +16,7 @@
             color="primary"
             :shaped="false"
             :rounded="false"
+            v-model="selectedItems"
           ></v-treeview>
         </v-main>
       </v-app>
@@ -37,21 +38,15 @@ export default {
     items: Array,
     loading: Boolean
   },
-  components: {
-  },
   data() {
     return {
-      // itemsTaskProject: [],
-      // itemsUser: [],
-      // itemsSession: [],
-      // selectedItemsTaskProject : [],
-      // selectedItemsUser : [],
-      // selectedItemsSession : [],
+      selectedItems: []
     };
   },
-  mounted () {
-  },
-  methods: {
+  watch :{
+    selectedItems() {
+      this.$emit("selectedItemsChange", this.selectedItems);
+    }
   }
 }
 </script>
