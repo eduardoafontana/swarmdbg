@@ -55,11 +55,9 @@ export default {
 .d-flex {
   display: flex;
   flex-wrap: wrap;
-  float: right;
-  margin-top: -480px;
 }
 .d-flex-item {
-  width: 300px;
+  min-width: 300px;
   padding: 5px;
   border: 1px solid #eaeaea;
   margin: 10px 10px 10px 10px;

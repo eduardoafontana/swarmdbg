@@ -1,7 +1,6 @@
 <template>
 <splitpanes>
-  <!-- <pane min-size="10" size="17"> -->
-  <pane min-size="10" size="34">
+  <pane min-size="10" size="17">
     <div class='drop-zone' @drop='onDrop($event, 0)' @dragover.prevent @dragenter.prevent>
       <div class='drag-el' v-for="item in listOne" :key='item.title' draggable @dragstart='startDrag($event, item)'>
         <div class="panel-head">

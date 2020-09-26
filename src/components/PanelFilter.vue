@@ -1,10 +1,27 @@
 <template>
   <div>
-    <DropdownFilter title="Tasks / Projects" :items="itemsTaskProject" :preLoad="selectedItemsTaskProject" @selectedItemsChange="changeTaskProject" :loading="loading"></DropdownFilter>
-    <DropdownFilter title="Users" :items="itemsUser" :preLoad="selectedItemsUser" @selectedItemsChange="changeUser" :loading="loading"></DropdownFilter>
-    <DropdownFilter title="Sessions" :items="itemsSession" :preLoad="selectedItemsSession" @selectedItemsChange="changeSession" :loading="loading"></DropdownFilter>
-
-    <TreeFilter title="Sessions" :items="itemsTreeSession" :loading="loadingTree" @selectedItemsChange="changeTreeSession"></TreeFilter>
+    <b-card no-body>
+      <b-tabs card small pills>
+        <b-tab active>
+          <template v-slot:title>
+            <b-icon icon="list-nested" font-scale="2"></b-icon>
+          </template>
+          <b-card-text>
+            <TreeFilter title="Sessions" :items="itemsTreeSession" :loading="loadingTree" @selectedItemsChange="changeTreeSession"></TreeFilter>
+          </b-card-text>
+        </b-tab>
+        <b-tab>
+          <template v-slot:title>
+            <b-icon icon="border-style" font-scale="2"></b-icon>
+          </template>
+          <b-card-text>
+            <DropdownFilter title="Tasks / Projects" :items="itemsTaskProject" :preLoad="selectedItemsTaskProject" @selectedItemsChange="changeTaskProject" :loading="loading"></DropdownFilter>
+            <DropdownFilter title="Users" :items="itemsUser" :preLoad="selectedItemsUser" @selectedItemsChange="changeUser" :loading="loading"></DropdownFilter>
+            <DropdownFilter title="Sessions" :items="itemsSession" :preLoad="selectedItemsSession" @selectedItemsChange="changeSession" :loading="loading"></DropdownFilter>
+          </b-card-text>
+        </b-tab>
+      </b-tabs>
+    </b-card>
   </div>
 </template>
 
@@ -108,6 +125,35 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+.card-header {
+  padding-top: 0.75rem !important;
+  padding-left: 1.25rem !important;
+  padding-right: 0.75rem !important;
+  padding-bottom: 0rem !important;
+}
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  background-color: #6c757d !important;
+}
+.nav-link {
+  padding-top: 0.35rem !important;
+  padding-right: 0.5rem !important;
+  padding-bottom: 0.35rem !important;
+  padding-left: 0.5rem !important;
 
+  color: #6c757d;
+}
+.nav-link:hover {
+  color: #fff;
+}
+</style>
+
+<style scoped>
+.card-body {
+  padding: 0px;
+  background-color: #29292D;
+}
+.card {
+  background-color: #29292D;
+}
 </style>
